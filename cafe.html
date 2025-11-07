@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cafe Mavrick Rajaramouri • Coffee, Bites, Community</title>
+  <meta name="description" content="Cafe Mavrick Rajaramouri — craft coffee, artisan bakes, and warm community vibes. View our menu, reserve a table, and plan your visit." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%8D%B5%3C/text%3E%3C/svg%3E" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style>
+    /* Simple fade/slide animation */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    /* Hide number spinners for a cleaner UI */
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+    input[type=number] { -moz-appearance: textfield; }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 dark:bg-neutral-950 dark:text-neutral-100 selection:bg-amber-200/60 selection:text-stone-900">
+  <!-- Top Bar -->
+  <header class="sticky top-0 z-50 backdrop-blur bg-white/70 dark:bg-black/30 border-b border-black/5 dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-center justify-between py-3">
+        <a href="#home" class="flex items-center gap-2 group">
+          <span class="text-2xl">☕</span>
+          <div>
+            <div class="text-lg font-semibold tracking-wide">Cafe Mavrick</div>
+            <div class="text-xs text-stone-500 group-hover:text-stone-700 dark:text-neutral-400">Rajaramouri</div>
+          </div>
+        </a>
+        <nav class="hidden md:flex items-center gap-6 text-sm">
+          <a href="#menu" class="hover:text-amber-700">Menu</a>
+          <a href="#about" class="hover:text-amber-700">About</a>
+          <a href="#gallery" class="hover:text-amber-700">Gallery</a>
+          <a href="#events" class="hover:text-amber-700">Events</a>
+          <a href="#visit" class="hover:text-amber-700">Visit</a>
+          <a href="#contact" class="hover:text-amber-700">Contact</a>
+        </nav>
+        <div class="flex items-center gap-2">
+          <button id="themeToggle" class="p-2 rounded-md hover:bg-stone-100 dark:hover:bg-white/10" aria-label="Toggle theme">
+            <span id="iconLight" class="hidden">🌙</span>
+            <span id="iconDark" class="">🌞</span>
+          </button>
+          <button id="reserveOpen" class="hidden sm:inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md shadow">Reserve a Table</button>
+          <button id="menuToggle" class="md:hidden p-2 rounded-md hover:bg-stone-100 dark:hover:bg-white/10" aria-label="Open menu">☰</button>
+        </div>
+      </div>
+      <!-- Mobile nav -->
+      <div id="mobileNav" class="md:hidden hidden border-t border-black/5 dark:border-white/10 pb-3">
+        <div class="flex flex-col gap-3 pt-3 text-sm">
+          <a href="#menu" class="px-2 py-1 hover:bg-stone-100/70 rounded">Menu</a>
+          <a href="#about" class="px-2 py-1 hover:bg-stone-100/70 rounded">About</a>
+          <a href="#gallery" class="px-2 py-1 hover:bg-stone-100/70 rounded">Gallery</a>
+          <a href="#events" class="px-2 py-1 hover:bg-stone-100/70 rounded">Events</a>
+          <a href="#visit" class="px-2 py-1 hover:bg-stone-100/70 rounded">Visit</a>
+          <a href="#contact" class="px-2 py-1 hover:bg-stone-100/70 rounded">Contact</a>
+          <button id="reserveOpenMobile" class="mt-1 inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md shadow">Reserve a Table</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-amber-100/70 via-amber-50 to-transparent dark:from-amber-600/10 dark:via-transparent pointer-events-none"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid md:grid-cols-2 gap-8 items-center py-12 sm:py-20">
+        <div class="reveal">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+            Craft Coffee, Heartfelt Bites
+          </h1>
+          <p class="mt-4 text-stone-600 dark:text-neutral-300 max-w-prose">
+            Welcome to Cafe Mavrick Rajaramouri — your neighborhood spot for slow mornings, lively conversations, and thoughtfully sourced goodness.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#menu" class="inline-flex items-center gap-2 bg-stone-900 dark:bg-white text-white dark:text-stone-900 px-5 py-3 rounded-md shadow hover:opacity-90">View Menu</a>
+            <button id="reserveOpenHero" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-5 py-3 rounded-md shadow">Reserve</button>
+          </div>
+          <div class="mt-6 flex items-center gap-3 text-sm">
+            <span id="openBadge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-300">● Open today</span>
+            <span id="todayHours" class="text-stone-500 dark:text-neutral-400">7:00 AM – 10:00 PM</span>
+          </div>
+        </div>
+        <div class="relative reveal">
+          <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 dark:ring-white/10">
+            <img src="https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?q=80&w=1400&auto=format&fit=crop" alt="Pour-over coffee and fresh pastry at Cafe Mavrick" class="w-full h-full object-cover" />
+          </div>
+          <div class="absolute -bottom-4 -left-4 bg-white/90 dark:bg-black/60 backdrop-blur px-4 py-3 rounded-xl shadow ring-1 ring-black/5 dark:ring-white/10 hidden sm:flex items-center gap-3">
+            <span class="text-2xl">💻</span>
+            <span class="text-sm">Free Wi‑Fi & cozy corners</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Highlights -->
+  <section class="py-10 sm:py-14">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 reveal">
+        <div class="text-3xl">🫘</div>
+        <h3 class="mt-3 font-semibold text-lg">Specialty Beans</h3>
+        <p class="text-sm text-stone-600 dark:text-neutral-300">Sourced ethically, roasted locally, brewed with precision.</p>
+      </div>
+      <div class="p-6 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 reveal">
+        <div class="text-3xl">🥐</div>
+        <h3 class="mt-3 font-semibold text-lg">Artisan Bakes</h3>
+        <p class="text-sm text-stone-600 dark:text-neutral-300">Fresh pastries and breads coming out of the oven daily.</p>
+      </div>
+      <div class="p-6 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 reveal">
+        <div class="text-3xl">🌿</div>
+        <h3 class="mt-3 font-semibold text-lg">Community Space</h3>
+        <p class="text-sm text-stone-600 dark:text-neutral-300">Warm vibes for meetups, study sessions, and live music nights.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu -->
+  <section id="menu" class="py-14 bg-gradient-to-b from-transparent to-amber-50/40 dark:to-amber-600/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between gap-4">
+        <div>
+          <h2 class="text-3xl font-bold">Menu</h2>
+          <p class="text-stone-600 dark:text-neutral-300">Brewed classics, signature sips, and bites to pair.</p>
+        </div>
+        <div class="hidden sm:flex items-center gap-2 text-xs text-stone-500 dark:text-neutral-400">
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-stone-100 dark:bg-white/10">V • Vegan</span>
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-stone-100 dark:bg-white/10">GF • Gluten‑free</span>
+          <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-stone-100 dark:bg-white/10">🧊 • Iced</span>
+        </div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <div class="flex items-center gap-2 flex-1 min-w-[220px] sm:min-w-[280px] bg-white dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10 rounded-lg px-3 py-2">
+          <span>🔎</span>
+          <input id="menuSearch" type="text" placeholder="Search drinks & bites..." class="bg-transparent w-full outline-none text-sm" />
+        </div>
+        <div id="menuFilters" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div id="menuGrid" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+      <div id="menuEmpty" class="hidden mt-8 text-center text-stone-500 dark:text-neutral-400">
+        No items match your search. Try a different filter.
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+      <div class="reveal">
+        <div class="text-sm uppercase tracking-widest text-amber-700/80 dark:text-amber-400">Our Story</div>
+        <h2 class="mt-2 text-3xl font-bold">Sips with soul since 2020</h2>
+        <p class="mt-4 text-stone-600 dark:text-neutral-300">
+          Cafe Mavrick began as a tiny coffee cart and grew into a full‑hearted cafe in Rajaramouri. We believe in small rituals that make big days — a perfect espresso shot, a flaky croissant, a friendly hello.
+        </p>
+        <p class="mt-3 text-stone-600 dark:text-neutral-300">
+          Our beans come from trusted growers, our bakes are made in‑house, and our space is built for you: creators, students, families, and friends.
+        </p>
+        <div class="mt-6 flex items-center gap-4">
+          <div class="flex -space-x-2">
+            <img class="w-8 h-8 rounded-full ring-2 ring-white dark:ring-neutral-900" src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop" alt="Barista" />
+            <img class="w-8 h-8 rounded-full ring-2 ring-white dark:ring-neutral-900" src="https://images.unsplash.com/photo-1520975922203-bc1e3670b2a5?q=80&w=200&auto=format&fit=crop" alt="Chef" />
+            <img class="w-8 h-8 rounded-full ring-2 ring-white dark:ring-neutral-900" src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=200&auto=format&fit=crop" alt="Guest" />
+          </div>
+          <div class="text-sm text-stone-600 dark:text-neutral-300">Join 10,000+ happy guests</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="aspect-[4/3] rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5 dark:ring-white/10">
+          <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1400&auto=format&fit=crop" alt="Inside Cafe Mavrick with warm lights and wooden textures" class="w-full h-full object-cover" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery" class="py-16 bg-white dark:bg-neutral-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between">
+        <h2 class="text-3xl font-bold">Gallery</h2>
+        <span class="text-sm text-stone-500 dark:text-neutral-400">Snapshots from daily life</span>
+      </div>
+      <div class="mt-8 grid grid-cols-2 md:grid-cols-3 gap-4">
+        <img class="rounded-xl h-44 sm:h-56 w-full object-cover reveal" src="https://images.unsplash.com/photo-1512266315675-6b2b8e240991?q=80&w=900&auto=format&fit=crop" alt="Latte art heart" />
+        <img class="rounded-xl h-44 sm:h-56 w-full object-cover reveal" src="https://images.unsplash.com/photo-1485808191679-5f86510681a2?q=80&w=900&auto=format&fit=crop" alt="Croissants on a tray" />
+        <img class="rounded-xl h-44 sm:h-56 w-full object-cover reveal" src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=900&auto=format&fit=crop" alt="Iced coffee on marble" />
+        <img class="rounded-xl h-44 sm:h-56 w-full object-cover reveal" src="https://images.unsplash.com/photo-1529078155058-5d716f45d604?q=80&w=900&auto=format&fit=crop" alt="Cozy seating corner" />
+        <img class="rounded-xl h-44 sm:h-56 w-full object-cover reveal" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?q=80&w=900&auto=format&fit=crop" alt="Espresso shot pulling" />
+        <img class="rounded-xl h-44 sm:h-56 w-full object-cover reveal" src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?q=80&w=900&auto=format&fit=crop" alt="Fresh fruit tart" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <h2 class="text-3xl font-bold">What people say</h2>
+      <div class="mt-8 grid md:grid-cols-3 gap-6">
+        <figure class="p-6 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 reveal">
+          <div class="text-amber-500">★★★★★</div>
+          <blockquote class="mt-3 text-sm text-stone-700 dark:text-neutral-300">Best flat white in town. The staff remember my name — that says it all.</blockquote>
+          <figcaption class="mt-4 text-xs text-stone-500">— Rhea</figcaption>
+        </figure>
+        <figure class="p-6 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 reveal">
+          <div class="text-amber-500">★★★★★</div>
+          <blockquote class="mt-3 text-sm text-stone-700 dark:text-neutral-300">Love the weekend brunch. Try the avocado sourdough with chili oil.</blockquote>
+          <figcaption class="mt-4 text-xs text-stone-500">— Karthik</figcaption>
+        </figure>
+        <figure class="p-6 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 reveal">
+          <div class="text-amber-500">★★★★★</div>
+          <blockquote class="mt-3 text-sm text-stone-700 dark:text-neutral-300">Plenty of plugs and great Wi‑Fi. My go‑to work spot.</blockquote>
+          <figcaption class="mt-4 text-xs text-stone-500">— Sana</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section id="events" class="py-16 bg-gradient-to-b from-transparent to-stone-100/60 dark:to-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex items-end justify-between">
+        <h2 class="text-3xl font-bold">Events & Happenings</h2>
+        <span class="text-sm text-stone-500 dark:text-neutral-400">Join the community</span>
+      </div>
+      <div id="eventList" class="mt-8 grid md:grid-cols-2 gap-6"></div>
+    </div>
+  </section>
+
+  <!-- Visit -->
+  <section id="visit" class="py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-start">
+      <div class="reveal">
+        <h2 class="text-3xl font-bold">Visit us</h2>
+        <p class="mt-2 text-stone-600 dark:text-neutral-300">123 Market Street, Rajaramouri</p>
+        <div class="mt-4 aspect-video rounded-xl overflow-hidden ring-1 ring-black/5 dark:ring-white/10 shadow">
+          <iframe title="Map" class="w-full h-full" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3890.0000000000005!2d80.0!3d17.0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3ACafe!2sCafe!5e0!3m2!1sen!2sin!4v1710000000000"></iframe>
+        </div>
+        <div class="mt-6 grid sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-lg bg-white dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10">
+            <div class="text-sm text-stone-500 dark:text-neutral-400">Hours</div>
+            <ul id="hoursList" class="mt-2 text-sm space-y-1"></ul>
+          </div>
+          <div class="p-4 rounded-lg bg-white dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10">
+            <div class="text-sm text-stone-500 dark:text-neutral-400">Contact</div>
+            <div class="mt-2 text-sm space-y-1">
+              <a href="tel:+919876543210" class="hover:underline">+91 98765 43210</a><br />
+              <a href="mailto:hello@cafemavrick.example" class="hover:underline">hello@cafemavrick.example</a>
+              <div class="pt-1">Parking available • Wheelchair accessible</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <h3 class="text-2xl font-semibold">Reserve a Table</h3>
+        <p class="mt-2 text-stone-600 dark:text-neutral-300">Book ahead for busy hours. Quick confirmation below.</p>
+        <form id="reserveInline" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3 p-4 rounded-xl bg-white dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10">
+          <input required name="name" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Full name" />
+          <input required type="email" name="email" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Email" />
+          <input required type="tel" name="phone" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Phone" />
+          <div class="grid grid-cols-2 gap-3">
+            <input required type="date" name="date" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" />
+            <input required type="time" name="time" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <input required type="number" min="1" max="12" name="guests" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Guests" />
+            <select name="area" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none">
+              <option>Any seating</option>
+              <option>Window</option>
+              <option>Outdoor</option>
+              <option>Quiet corner</option>
+            </select>
+          </div>
+          <textarea name="notes" rows="2" class="sm:col-span-2 px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Notes (allergies, occasion, etc.)"></textarea>
+          <button class="sm:col-span-2 mt-1 inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md shadow">Confirm Reservation</button>
+          <div id="reserveInlineMsg" class="sm:col-span-2 text-sm text-green-700 dark:text-green-400 hidden">Thanks! Your table is reserved. A confirmation email is on its way.</div>
+        </form>
+
+        <div class="mt-6">
+          <h4 class="font-medium">Your upcoming reservations</h4>
+          <ul id="reservationList" class="mt-2 text-sm text-stone-700 dark:text-neutral-300 space-y-1"></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="py-16 bg-stone-100/60 dark:bg-white/5">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 gap-8 items-start">
+      <div class="reveal">
+        <h2 class="text-3xl font-bold">Say hello</h2>
+        <p class="mt-2 text-stone-600 dark:text-neutral-300">Feedback, catering, collaborations — we read every message.</p>
+        <form id="contactForm" class="mt-6 space-y-3 p-4 rounded-xl bg-white dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10">
+          <input required name="name" class="w-full px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Full name" />
+          <input required type="email" name="email" class="w-full px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Email" />
+          <textarea required name="message" rows="4" class="w-full px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Your message"></textarea>
+          <button class="inline-flex items-center gap-2 bg-stone-900 dark:bg-white text-white dark:text-stone-900 px-4 py-2 rounded-md shadow">Send message</button>
+          <div id="contactMsg" class="text-sm text-green-700 dark:text-green-400 hidden">Thanks! We got your note and will reply soon.</div>
+        </form>
+      </div>
+      <div class="reveal">
+        <div class="p-6 rounded-xl bg-white dark:bg-neutral-900 ring-1 ring-black/5 dark:ring-white/10">
+          <h3 class="text-xl font-semibold">Newsletter</h3>
+          <p class="mt-2 text-sm text-stone-600 dark:text-neutral-300">Get menu updates and event invites once a week.</p>
+          <form id="newsForm" class="mt-4 flex gap-2">
+            <input required type="email" class="flex-1 px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Email address" />
+            <button class="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md">Join</button>
+          </form>
+          <div id="newsMsg" class="mt-2 text-sm text-green-700 dark:text-green-400 hidden">Welcome to the list! 🎉</div>
+          <div class="mt-6 text-sm text-stone-600 dark:text-neutral-300">
+            Follow us:
+            <a class="underline hover:no-underline" href="#">Instagram</a> ·
+            <a class="underline hover:no-underline" href="#">Facebook</a> ·
+            <a class="underline hover:no-underline" href="#">Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 border-t border-black/5 dark:border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="text-xl">☕</span>
+        <span class="font-semibold">Cafe Mavrick Rajaramouri</span>
+      </div>
+      <div class="text-sm text-stone-500 dark:text-neutral-400">© <span id="year"></span> All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- Reserve Modal -->
+  <div id="reserveModal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-black/50" data-close></div>
+    <div class="absolute inset-x-4 sm:inset-x-0 mx-auto top-10 sm:top-16 max-w-xl p-6 rounded-2xl bg-white dark:bg-neutral-900 shadow-2xl ring-1 ring-black/10 dark:ring-white/10">
+      <div class="flex items-start justify-between gap-4">
+        <div>
+          <h3 class="text-xl font-semibold">Reserve a Table</h3>
+          <p class="text-sm text-stone-600 dark:text-neutral-400">We’ll send a confirmation by email.</p>
+        </div>
+        <button class="p-2 rounded-md hover:bg-stone-100 dark:hover:bg-white/10" data-close aria-label="Close">✕</button>
+      </div>
+      <form id="reserveForm" class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <input required name="name" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Full name" />
+        <input required type="email" name="email" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Email" />
+        <input required type="tel" name="phone" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Phone" />
+        <div class="grid grid-cols-2 gap-3">
+          <input required type="date" name="date" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" />
+          <input required type="time" name="time" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" />
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <input required type="number" min="1" max="12" name="guests" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Guests" />
+          <select name="area" class="px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none">
+            <option>Any seating</option>
+            <option>Window</option>
+            <option>Outdoor</option>
+            <option>Quiet corner</option>
+          </select>
+        </div>
+        <textarea name="notes" rows="2" class="sm:col-span-2 px-3 py-2 rounded-md bg-stone-50 dark:bg-neutral-800 outline-none" placeholder="Notes (allergies, occasion, etc.)"></textarea>
+        <button class="sm:col-span-2 mt-1 inline-flex items-center justify-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-md shadow">Confirm Reservation</button>
+        <div id="reserveMsg" class="sm:col-span-2 text-sm text-green-700 dark:text-green-400 hidden">Thanks! Your table is reserved. See you soon.</div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Theme toggle with localStorage persistence
+    const htmlEl = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const iconLight = document.getElementById('iconLight');
+    const iconDark = document.getElementById('iconDark');
+    function setTheme(mode){
+      if(mode === 'dark'){ htmlEl.classList.add('dark'); iconLight.classList.remove('hidden'); iconDark.classList.add('hidden'); }
+      else { htmlEl.classList.remove('dark'); iconLight.classList.add('hidden'); iconDark.classList.remove('hidden'); }
+      localStorage.setItem('theme', mode);
+    }
+    setTheme(localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+    themeToggle.addEventListener('click', () => setTheme(htmlEl.classList.contains('dark') ? 'light' : 'dark'));
+
+    // Mobile nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileNav = document.getElementById('mobileNav');
+    menuToggle.addEventListener('click', () => mobileNav.classList.toggle('hidden'));
+
+    // Intersection Observer for reveal animations
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target);} });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // Dynamic hours and open-now badge
+    const schedule = {
+      0: { open: '08:00', close: '20:00' }, // Sunday
+      1: { open: '07:00', close: '22:00' },
+      2: { open: '07:00', close: '22:00' },
+      3: { open: '07:00', close: '22:00' },
+      4: { open: '07:00', close: '22:00' },
+      5: { open: '07:00', close: '23:00' },
+      6: { open: '07:00', close: '23:00' }, // Saturday
+    };
+    function timeToMinutes(t){ const [h,m] = t.split(':').map(Number); return h*60+m; }
+    function fmt(t){
+      const [h,m] = t.split(':').map(Number);
+      const ampm = h >= 12 ? 'PM' : 'AM';
+      const h12 = ((h + 11) % 12 + 1);
+      return `${h12}:${String(m).padStart(2,'0')} ${ampm}`;
+    }
+    const now = new Date();
+    const today = now.getDay();
+    const todaySch = schedule[today];
+    const mins = now.getHours()*60 + now.getMinutes();
+    const isOpen = mins >= timeToMinutes(todaySch.open) && mins < timeToMinutes(todaySch.close);
+    const openBadge = document.getElementById('openBadge');
+    const todayHours = document.getElementById('todayHours');
+    todayHours.textContent = `${fmt(todaySch.open)} – ${fmt(todaySch.close)}`;
+    openBadge.textContent = isOpen ? '● Open now' : '● Closed now';
+    openBadge.className = isOpen
+      ? 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-100 text-green-800 dark:bg-green-500/20 dark:text-green-300'
+      : 'inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-stone-200 text-stone-700 dark:bg-white/10 dark:text-neutral-300';
+
+    const hoursList = document.getElementById('hoursList');
+    const dayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    Object.keys(schedule).forEach(d => {
+      const li = document.createElement('li');
+      li.className = 'flex items-center justify-between';
+      li.innerHTML = `<span>${dayNames[d]}</span><span class="tabular-nums">${fmt(schedule[d].open)} – ${fmt(schedule[d].close)}</span>`;
+      if(Number(d) === today){ li.classList.add('font-medium', 'text-amber-700', 'dark:text-amber-400'); }
+      hoursList.appendChild(li);
+    });
+
+    // Menu data and filtering
+    const menuData = [
+      { id: 1, name: 'Espresso', price: 120, desc: 'Double shot, rich and bold', cat: 'Coffee', tags: [] },
+      { id: 2, name: 'Flat White', price: 180, desc: 'Velvety microfoam over espresso', cat: 'Coffee', tags: [] },
+      { id: 3, name: 'Cappuccino', price: 170, desc: 'Classic foam and balance', cat: 'Coffee', tags: [] },
+      { id: 4, name: 'Cold Brew', price: 200, desc: 'Slow-steeped, smooth finish', cat: 'Cold', tags: ['🧊'] },
+      { id: 5, name: 'Classic Iced Latte', price: 190, desc: 'Lightly sweet, extra chill', cat: 'Cold', tags: ['🧊'] },
+      { id: 6, name: 'Matcha Latte', price: 210, desc: 'Ceremonial grade matcha', cat: 'Tea', tags: ['GF'] },
+      { id: 7, name: 'Masala Chai', price: 140, desc: 'Spiced Indian tea', cat: 'Tea', tags: ['GF'] },
+      { id: 8, name: 'Almond Croissant', price: 220, desc: 'Buttery layers, almond crème', cat: 'Bakery', tags: [] },
+      { id: 9, name: 'Vegan Banana Bread', price: 150, desc: 'Moist loaf, dark chocolate', cat: 'Bakery', tags: ['V'] },
+      { id: 10, name: 'Avocado Sourdough', price: 260, desc: 'Chili oil, lemon zest', cat: 'Brunch', tags: ['V'] },
+      { id: 11, name: 'Greek Yogurt Granola', price: 200, desc: 'Seasonal fruit, honey', cat: 'Brunch', tags: ['GF'] },
+      { id: 12, name: 'Iced Americano', price: 150, desc: 'Bright and refreshing', cat: 'Cold', tags: ['🧊'] },
+    ];
+    const categories = ['All','Coffee','Tea','Bakery','Brunch','Cold'];
+    const menuGrid = document.getElementById('menuGrid');
+    const menuFilters = document.getElementById('menuFilters');
+    const menuSearch = document.getElementById('menuSearch');
+    let activeCat = 'All';
+
+    function renderFilters(){
+      menuFilters.innerHTML = '';
+      categories.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'px-3 py-1.5 rounded-full text-sm ring-1 ring-black/5 dark:ring-white/10 hover:bg-stone-100 dark:hover:bg-white/10';
+        btn.textContent = cat;
+        if(cat === activeCat){ btn.classList.add('bg-stone-900','text-white','dark:bg-white','dark:text-stone-900'); }
+        btn.addEventListener('click', ()=>{ activeCat = cat; renderFilters(); renderMenu(); });
+        menuFilters.appendChild(btn);
+      });
+    }
+
+    function currency(n){ return '₹' + n.toFixed(0); }
+
+    function renderMenu(){
+      const q = menuSearch.value.trim().toLowerCase();
+      const filtered = menuData.filter(item => {
+        const matchCat = activeCat === 'All' || item.cat === activeCat;
+        const matchQ = !q || item.name.toLowerCase().includes(q) || item.desc.toLowerCase().includes(q);
+        return matchCat && matchQ;
+      });
+      menuGrid.innerHTML = '';
+      document.getElementById('menuEmpty').classList.toggle('hidden', filtered.length !== 0);
+      filtered.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'p-5 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 flex flex-col';
+        card.innerHTML = `
+          <div class="flex items-start justify-between gap-3">
+            <div>
+              <h3 class="font-semibold">${item.name}</h3>
+              <div class="text-xs text-stone-500">${item.cat}</div>
+            </div>
+            <div class="font-semibold">${currency(item.price)}</div>
+          </div>
+          <p class="mt-2 text-sm text-stone-600 dark:text-neutral-300">${item.desc}</p>
+          <div class="mt-3 flex items-center gap-2 text-xs text-stone-600 dark:text-neutral-300">${item.tags.map(t=>`<span class='px-2 py-0.5 rounded-full bg-stone-100 dark:bg-white/10'>${t}</span>`).join('')}</div>
+          <div class="mt-4 flex gap-2">
+            <button class="px-3 py-1.5 rounded-md bg-amber-600 hover:bg-amber-700 text-white text-sm" data-fav="${item.id}">Add to Picks</button>
+            <button class="px-3 py-1.5 rounded-md ring-1 ring-black/10 dark:ring-white/20 text-sm hover:bg-stone-100 dark:hover:bg-white/10" data-share="${item.id}">Share</button>
+          </div>
+        `;
+        menuGrid.appendChild(card);
+      });
+    }
+
+    renderFilters();
+    renderMenu();
+    menuSearch.addEventListener('input', renderMenu);
+
+    // Simple favorites using localStorage
+    const PICKS_KEY = 'mavrick_picks';
+    function getPicks(){ try{ return JSON.parse(localStorage.getItem(PICKS_KEY)) || []; } catch{ return []; } }
+    function savePicks(arr){ localStorage.setItem(PICKS_KEY, JSON.stringify(arr)); }
+    document.addEventListener('click', (e)=>{
+      const favId = e.target.getAttribute('data-fav');
+      const shareId = e.target.getAttribute('data-share');
+      if(favId){
+        const id = Number(favId);
+        const picks = new Set(getPicks());
+        if(picks.has(id)) picks.delete(id); else picks.add(id);
+        savePicks([...picks]);
+        toast(picks.has(id) ? 'Added to your picks' : 'Removed from your picks');
+      }
+      if(shareId){
+        const item = menuData.find(i => i.id === Number(shareId));
+        const text = `Let\'s try ${item.name} at Cafe Mavrick Rajaramouri!`;
+        if(navigator.share){ navigator.share({ title: item.name, text, url: location.href }); }
+        else { navigator.clipboard.writeText(text + ' ' + location.href); toast('Copied a share message to clipboard'); }
+      }
+    });
+
+    // Events data
+    const events = [
+      { title: 'Open Mic Night', date: nextDayOfWeek(5, 19), desc: 'Local artists, poets, and musicians. Free entry.' },
+      { title: 'Brew Workshop', date: nextDayOfWeek(2, 18), desc: 'Learn pour-over and espresso basics with our head barista.' },
+      { title: 'Board Game Sunday', date: nextDayOfWeek(0, 16), desc: 'Bring friends or join a table. Snacks on us.' },
+      { title: 'Latte Art Throwdown', date: nextDayOfWeek(4, 20), desc: 'Friendly competition. Prizes and bragging rights.' },
+    ];
+    function nextDayOfWeek(dow, hour){
+      const d = new Date();
+      const result = new Date(d);
+      result.setDate(d.getDate() + ((7 + dow - d.getDay()) % 7 || 7));
+      result.setHours(hour, 0, 0, 0);
+      return result;
+    }
+    function fmtDate(d){
+      return d.toLocaleString(undefined, { weekday:'short', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' });
+    }
+    const eventList = document.getElementById('eventList');
+    events.sort((a,b)=>a.date-b.date).forEach(ev => {
+      const card = document.createElement('div');
+      card.className = 'p-5 rounded-xl bg-white dark:bg-neutral-900 shadow ring-1 ring-black/5 dark:ring-white/10 flex items-start gap-4';
+      card.innerHTML = `
+        <div class="text-2xl">🎶</div>
+        <div>
+          <div class="font-semibold">${ev.title}</div>
+          <div class="text-sm text-stone-500">${fmtDate(ev.date)}</div>
+          <p class="mt-2 text-sm text-stone-700 dark:text-neutral-300">${ev.desc}</p>
+        </div>`;
+      eventList.appendChild(card);
+    });
+
+    // Reserve modal logic (shared)
+    const reserveModal = document.getElementById('reserveModal');
+    function openReserve(){ reserveModal.classList.remove('hidden'); }
+    function closeReserve(){ reserveModal.classList.add('hidden'); }
+    document.getElementById('reserveOpen')?.addEventListener('click', openReserve);
+    document.getElementById('reserveOpenMobile')?.addEventListener('click', openReserve);
+    document.getElementById('reserveOpenHero')?.addEventListener('click', openReserve);
+    reserveModal.addEventListener('click', (e)=>{ if(e.target.hasAttribute('data-close')) closeReserve(); });
+    reserveModal.querySelector('[data-close]').addEventListener('click', closeReserve);
+
+    // Small toast utility
+    let toastTimer;
+    function toast(msg){
+      let el = document.getElementById('toast');
+      if(!el){
+        el = document.createElement('div');
+        el.id = 'toast';
+        el.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-md bg-stone-900 text-white dark:bg-white dark:text-stone-900 shadow';
+        document.body.appendChild(el);
+      }
+      el.textContent = msg;
+      el.style.opacity = '0';
+      el.style.transition = 'opacity .3s ease, transform .3s ease';
+      requestAnimationFrame(()=>{ el.style.opacity = '1'; el.style.transform = 'translate(-50%, 0)'; });
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(()=>{ el.style.opacity = '0'; }, 1800);
+    }
+
+    // Reservation storage
+    const RESV_KEY = 'mavrick_reservations';
+    function getReservations(){ try{ return JSON.parse(localStorage.getItem(RESV_KEY)) || []; } catch{ return []; } }
+    function saveReservations(arr){ localStorage.setItem(RESV_KEY, JSON.stringify(arr)); }
+    function addReservation(obj){ const all = getReservations(); all.push(obj); saveReservations(all); renderReservations(); }
+    function renderReservations(){
+      const list = document.getElementById('reservationList');
+      list.innerHTML = '';
+      const upcoming = getReservations().map(r => ({...r, dt: new Date(r.date + 'T' + r.time)})).filter(r => r.dt >= new Date()).sort((a,b)=>a.dt-b.dt).slice(0,5);
+      if(upcoming.length === 0){ list.innerHTML = '<li class="text-stone-500">No upcoming reservations yet.</li>'; return; }
+      upcoming.forEach(r => {
+        const li = document.createElement('li');
+        li.textContent = `${r.name} • ${r.guests} guests • ${r.date} ${r.time} • ${r.area}`;
+        list.appendChild(li);
+      });
+    }
+    renderReservations();
+
+    function handleReserveForm(formEl, msgEl){
+      formEl.addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const data = Object.fromEntries(new FormData(formEl).entries());
+        if(!data.name || !data.email) return;
+        addReservation(data);
+        msgEl.classList.remove('hidden');
+        toast('Reservation confirmed');
+        formEl.reset();
+      });
+    }
+    handleReserveForm(document.getElementById('reserveForm'), document.getElementById('reserveMsg'));
+    handleReserveForm(document.getElementById('reserveInline'), document.getElementById('reserveInlineMsg'));
+
+    // Contact & newsletter forms
+    document.getElementById('contactForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      document.getElementById('contactMsg').classList.remove('hidden');
+      toast('Message sent!');
+      e.target.reset();
+    });
+    document.getElementById('newsForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      document.getElementById('newsMsg').classList.remove('hidden');
+      toast('Subscribed');
+      e.target.reset();
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
