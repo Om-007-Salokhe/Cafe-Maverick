@@ -1,4 +1,4 @@
-# ☕ Cafe Mavrick Rajaramouri
+# ☕ Cafe Mavrick Rajarampuri
 
 A modern, responsive, and animated website for **Cafe Mavrick Rajaramouri** — a cozy café with premium brews, baked delights, and a digital-first vibe.  
 Built using **HTML**, **Tailwind CSS**, and **Vanilla JavaScript** with smooth animations and a fully responsive layout.
